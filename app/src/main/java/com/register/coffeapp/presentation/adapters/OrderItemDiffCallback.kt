@@ -7,7 +7,7 @@ import com.register.coffeapp.domain.entities.OrderItem
 object OrderItemDiffCallback: DiffUtil.ItemCallback<OrderItem>() {
 
     override fun areItemsTheSame(oldItem: OrderItem, newItem: OrderItem): Boolean {
-        return oldItem.name.hashCode() == newItem.name.hashCode()
+        return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(oldItem: OrderItem, newItem: OrderItem): Boolean {

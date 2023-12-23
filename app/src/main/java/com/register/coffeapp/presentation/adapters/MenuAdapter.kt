@@ -51,28 +51,38 @@ class MenuAdapter(
 
         Glide.with(context)
             .load(imageStr)
+            .centerCrop()
             .into(image)
         val priceName = list[position].price.toString()
         price.text = "$priceName руб"
         name.text = list[position].name
 
-        var count = 0
+        var countItems = 0
 
         countIncrement.setOnClickListener {
-            count += 1
-            countOfCoffee.text = count.toString()
-            val orderItem = OrderItem(list[position].name, list[position].price.toString(), count)
+            countItems += 1
+            countOfCoffee.text = countItems.toString()
+            val priceOfItems = list[position].price * countItems
+            val orderItem = OrderItem(
+                name = list[position].name,
+                price = priceOfItems.toString(),
+                count = countItems
+            )
             listener.onCountChanged(orderItem)
         }
 
         countDecrement.setOnClickListener {
             if (count > 0) {
-                count -= 1
-                countOfCoffee.text = count.toString()
-                val orderItem = OrderItem(list[position].name, list[position].price.toString(), count)
+                countItems -= 1
+                countOfCoffee.text = countItems.toString()
+                val orderItem = OrderItem(
+                    name = list[position].name,
+                    price = list[position].price.toString(),
+                    count = countItems
+                )
                 listener.onCountChanged(orderItem)
             } else {
-                val countUpdated = --count
+                val countUpdated = --countItems
                 countOfCoffee.text = countUpdated.toString()
             }
         }

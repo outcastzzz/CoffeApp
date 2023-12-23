@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.register.coffeapp.databinding.CafeItemBinding
 import com.register.coffeapp.domain.entities.Cafe
+import kotlin.random.Random
 
 class CafeAdapter: ListAdapter<Cafe, CafeViewHolder>(CafeItemDiffCallback) {
 
@@ -23,7 +24,8 @@ class CafeAdapter: ListAdapter<Cafe, CafeViewHolder>(CafeItemDiffCallback) {
     override fun onBindViewHolder(holder: CafeViewHolder, position: Int) {
         val cafe = getItem(position)
         holder.binding.tvName.text = cafe.name
-        holder.binding.tvDistance.text = "1 км от вас"
+        val distance = Random.nextInt(1, 3)
+        holder.binding.tvDistance.text = "$distance км от вас"
         holder.itemView.setOnClickListener {
             onItemClickListener?.onItemClick(position)
         }

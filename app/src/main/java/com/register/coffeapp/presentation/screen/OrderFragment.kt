@@ -9,10 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.register.coffeapp.R
-import com.register.coffeapp.databinding.FragmentMenuBinding
 import com.register.coffeapp.databinding.FragmentOrderBinding
-import com.register.coffeapp.domain.entities.OrderItem
 import com.register.coffeapp.presentation.CoffeeApp
 import com.register.coffeapp.presentation.MainViewModel
 import com.register.coffeapp.presentation.ViewModelFactory
@@ -55,9 +52,8 @@ class OrderFragment : Fragment() {
         val args = OrderFragmentArgs.fromBundle(requireArguments())
         val orderItems = args.selectedItems.toList()
 
-        Log.d("OrderTag", "$orderItems")
-
         val adapter = OrderAdapter()
+        binding.rvOrder.layoutManager = LinearLayoutManager(requireActivity().applicationContext)
         binding.rvOrder.adapter = adapter
         adapter.submitList(orderItems)
 

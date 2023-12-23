@@ -21,9 +21,11 @@ class OrderAdapter: ListAdapter<OrderItem, OrderViewHolder>(OrderItemDiffCallbac
     override fun onBindViewHolder(holder: OrderViewHolder, position: Int) {
         val order = getItem(position)
         Log.d("OrderTag", "$order")
-        holder.binding.tvName.text = order.name
-        holder.binding.tvCount.text = order.count.toString()
-        holder.binding.tvPrice.text = order.price
+        with(holder.binding) {
+            tvName.text = order.name
+            tvCount.text = order.count.toString()
+            tvPrice.text = order.price
+        }
     }
 
 }
