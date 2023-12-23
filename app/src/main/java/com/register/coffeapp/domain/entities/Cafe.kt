@@ -1,6 +1,5 @@
 package com.register.coffeapp.domain.entities
 
-import java.math.BigDecimal
 
 data class Cafe (
     val id: Int,
@@ -8,7 +7,3 @@ data class Cafe (
     val point: Point
 )
 
-data class Point (
-    val latitude: BigDecimal,
-    val longitude: BigDecimal
-)

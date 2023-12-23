@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.register.coffeapp.R
 import com.register.coffeapp.databinding.FragmentCafeListBinding
-import com.register.coffeapp.databinding.FragmentRegisterBinding
+import com.register.coffeapp.domain.entities.Point
 import com.register.coffeapp.presentation.CoffeeApp
 import com.register.coffeapp.presentation.MainViewModel
 import com.register.coffeapp.presentation.ViewModelFactory
@@ -29,7 +29,8 @@ class CafeListFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-   private var token = ""
+    private var token = ""
+    private val points: MutableList<Point> = mutableListOf()
 
     private val component by lazy {
         (requireActivity().application as CoffeeApp).component
@@ -65,14 +66,33 @@ class CafeListFragment : Fragment() {
                     launchMenuFragment()
                 }
             })
-            binding.recyclerView.layoutManager = LinearLayoutManager(requireActivity().applicationContext)
-            binding.recyclerView.adapter = adapter
+            binding.rvCafe.layoutManager = LinearLayoutManager(requireActivity().applicationContext)
+            binding.rvCafe.adapter = adapter
             adapter.submitList(it)
+
+            for (i in it) {
+                points.add(i.point)
+            }
+        }
+
+        binding.buttonMap.setOnClickListener {
+            launchMapFragment()
         }
 
     }
 
     private fun launchMenuFragment() {
         findNavController().navigate(R.id.action_coffeeListFragment_to_menuFragment)
+    }
+
+    private fun launchMapFragment() {
+        val listOfPoints = points.toTypedArray()
+        val action = CafeListFragmentDirections.actionCoffeeListFragmentToMapFragment(listOfPoints)
+        findNavController().navigate(action)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

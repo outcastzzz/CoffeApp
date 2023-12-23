@@ -6,12 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.register.coffeapp.R
-import com.register.coffeapp.databinding.FragmentRegisterBinding
 import com.register.coffeapp.databinding.FragmentSignInBinding
-import com.register.coffeapp.domain.entities.AuthRequest
+import com.register.coffeapp.domain.entities.User
 import com.register.coffeapp.presentation.CoffeeApp
 import com.register.coffeapp.presentation.MainViewModel
 import com.register.coffeapp.presentation.ViewModelFactory
@@ -50,20 +50,35 @@ class SignInFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity(), viewModelFactory)[MainViewModel::class.java]
 
-        binding.buttonNext.setOnClickListener {
+        viewModel.error.observe(viewLifecycleOwner) {
+            if(it) {
+                launchCafeListFragment()
+            } else {
+                Toast.makeText(
+                    requireActivity().applicationContext,
+                    "Неправильный логин или пароль",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
 
-            viewModel.signIn(
-                AuthRequest(
-                    binding.etLogin.text.toString(),
-                    binding.etPasswordSign.text.toString()
-                )
+        binding.buttonNext.setOnClickListener {
+            val user = User(
+                binding.etLogin.text.toString(),
+                binding.etPasswordSign.text.toString()
             )
-            launchCafeListFragment()
+
+            viewModel.signIn(user)
         }
     }
 
     private fun launchCafeListFragment() {
         findNavController().navigate(R.id.action_signInFragment_to_coffeeListFragment)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

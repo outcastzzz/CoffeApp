@@ -1,23 +1,17 @@
 package com.register.coffeapp.presentation
 
 import android.util.Log
-import android.view.Menu
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.findViewTreeViewModelStoreOwner
-import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
-import com.register.coffeapp.domain.entities.AuthRequest
+import com.register.coffeapp.domain.entities.User
 import com.register.coffeapp.domain.entities.Cafe
 import com.register.coffeapp.domain.entities.MenuItem
-import com.register.coffeapp.domain.entities.UserData
 import com.register.coffeapp.domain.useCase.GetCafeInfoUseCase
 import com.register.coffeapp.domain.useCase.GetMenuUseCase
 import com.register.coffeapp.domain.useCase.RegisterUseCase
 import com.register.coffeapp.domain.useCase.SignInUseCase
-import com.register.coffeapp.presentation.Result
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,8 +19,11 @@ class MainViewModel @Inject constructor(
     private val getCafeInfoUseCase: GetCafeInfoUseCase,
     private val getMenuUseCase: GetMenuUseCase,
     private val registerUseCase: RegisterUseCase,
-    private val signInUseCase: SignInUseCase
+    private val signInUseCase: SignInUseCase,
 ): ViewModel() {
+
+    private val _error = MutableLiveData<Boolean>()
+    val error: LiveData<Boolean> = _error
 
     private val _cafeList = MutableLiveData<List<Cafe>>()
     val cafeList: LiveData<List<Cafe>> = _cafeList
@@ -37,20 +34,17 @@ class MainViewModel @Inject constructor(
     private val _menuList = MutableLiveData<List<MenuItem>>()
     val menuList: LiveData<List<MenuItem>> = _menuList
 
-    fun register(authRequest: AuthRequest) {
+    fun register(user: User) {
         viewModelScope.launch {
-            val userData = registerUseCase.register(authRequest)
-            Log.d("MyTag", "$userData")
+            val userData = registerUseCase.register(user)
+            _error.value = userData.token != ""
         }
     }
 
-    fun signIn(authRequest: AuthRequest) {
+    fun signIn(user: User) {
         viewModelScope.launch {
-            val userData = signInUseCase.signIn(authRequest)
-            Log.d("MyTag", userData.token)
-            if(userData.token != "") {
-                _token.value = userData.token
-            }
+            val userData = signInUseCase.signIn(user)
+            _error.value = userData.token != ""
         }
     }
 
@@ -69,6 +63,5 @@ class MainViewModel @Inject constructor(
             _menuList.value = menu
         }
     }
-
 
 }

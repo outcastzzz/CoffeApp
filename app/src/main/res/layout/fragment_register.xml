@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -27,17 +27,28 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/text_background"
-        android:ems="10"
-        android:gravity="center_vertical"
-        android:hint="example@example.ru"
-        android:inputType="text"
-        android:paddingStart="15dp"
-        android:textColorHint="#9C9494"
-        android:textSize="20sp"
+        android:gravity="bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_email" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:ems="10"
+            android:gravity="center_vertical"
+            android:hint="example@example.ru"
+            android:inputType="text"
+            android:paddingStart="15dp"
+            android:textColorHint="#9C9494"
+            android:textSize="20sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
 
     <TextView
         android:id="@+id/tv_password"
@@ -128,4 +139,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

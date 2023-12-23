@@ -1,11 +1,11 @@
 package com.register.coffeapp.data.network
 
-import com.register.coffeapp.domain.entities.AuthRequest
+import com.register.coffeapp.domain.entities.User
 import com.register.coffeapp.domain.entities.Cafe
 import com.register.coffeapp.domain.entities.MenuItem
 import com.register.coffeapp.domain.entities.UserData
+import retrofit2.Response
 import retrofit2.http.Body
-import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Headers
@@ -20,8 +20,8 @@ interface ApiService {
         "Content-Type: application/json"
     )
     suspend fun getRegInfo(
-        @Body authRequest: AuthRequest
-    ): UserData
+        @Body user: User
+    ): Response<UserData>
 
     @POST("auth/login")
     @Headers(
@@ -29,18 +29,18 @@ interface ApiService {
         "Content-Type: application/json"
     )
     suspend fun getSignInfo(
-        @Body authRequest: AuthRequest
-    ): UserData
+        @Body user: User
+    ): Response<UserData>
 
     @GET("location/{id}/menu")
     suspend fun getMenu(
         @Header("Authorization") auth: String,
         @Path("id") id: String,
-    ): List<MenuItem>
+    ): Response<List<MenuItem>>
 
     @GET("locations")
     suspend fun getCafeInfo(
         @Header("Authorization") auth: String
-    ): List<Cafe>
+    ): Response<List<Cafe>>
 
 }

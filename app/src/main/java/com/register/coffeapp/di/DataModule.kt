@@ -1,8 +1,5 @@
 package com.register.coffeapp.di
 
-import android.app.Application
-import com.register.coffeapp.data.database.AppDatabase
-import com.register.coffeapp.data.database.AuthDataDao
 import com.register.coffeapp.data.network.ApiFactory
 import com.register.coffeapp.data.network.ApiService
 import com.register.coffeapp.data.repository.CoffeeRepositoryImpl
@@ -24,14 +21,6 @@ interface DataModule {
         @ApplicationScope
         fun provideApiService(): ApiService {
             return ApiFactory.apiService
-        }
-
-        @Provides
-        @ApplicationScope
-        fun provideAuthDao(
-            application: Application
-        ): AuthDataDao {
-            return AppDatabase.getInstance(application).authDataDao()
         }
 
     }

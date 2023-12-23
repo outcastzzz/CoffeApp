@@ -61,6 +61,9 @@
         <action
             android:id="@+id/action_mapFragment_to_coffeeListFragment"
             app:destination="@id/coffeeListFragment" />
+        <argument
+            android:name="points"
+            app:argType="com.register.coffeapp.domain.entities.Point[]" />
     </fragment>
     <fragment
         android:id="@+id/orderFragment"

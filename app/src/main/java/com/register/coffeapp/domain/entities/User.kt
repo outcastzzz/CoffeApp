@@ -1,6 +1,6 @@
 package com.register.coffeapp.domain.entities
 
-data class AuthRequest (
+data class User (
     val login: String,
     val password: String
 )
