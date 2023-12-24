@@ -7,116 +7,142 @@
     android:background="#fff"
     tools:context=".presentation.screen.RegisterFragment">
 
-    <TextView
-        android:id="@+id/tv_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginBottom="300dp"
-        android:text="e-mail"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/et_email"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="30dp"
-        android:background="@drawable/text_background"
-        android:gravity="bottom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_email">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:ems="10"
-            android:gravity="center_vertical"
-            android:hint="example@example.ru"
-            android:inputType="text"
-            android:paddingStart="15dp"
-            android:textColorHint="#9C9494"
-            android:textSize="20sp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-
-    <TextView
-        android:id="@+id/tv_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        android:text="Пароль"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_email" />
-
-    <EditText
-        android:id="@+id/et_password"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="30dp"
-        android:background="@drawable/text_background"
-        android:ems="10"
-        android:gravity="center_vertical"
-        android:hint="*******"
-        android:inputType="text|textPassword"
-        android:paddingStart="15dp"
-        android:textColorHint="#9C9494"
-        android:textSize="20sp"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="339dp"
+        android:layout_height="73dp"
+        android:layout_marginTop="175dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_password" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_line_register">
 
-    <TextView
-        android:id="@+id/tv_password2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        android:text="Повторите пароль"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_password" />
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_width="41dp"
+            android:layout_height="18dp"
+            android:text="e-mail"
+            android:textColor="#846340"
+            android:textSize="15sp" />
 
-    <EditText
-        android:id="@+id/et_password_again"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="30dp"
-        android:background="@drawable/text_background"
-        android:ems="10"
-        android:gravity="center_vertical"
-        android:hint="*******"
-        android:inputType="text|textPassword"
-        android:paddingStart="15dp"
-        android:textColorHint="#9C9494"
-        android:textSize="20sp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_email_layout"
+            android:layout_width="339dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/text_background"
+            android:gravity="center">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_email"
+                android:layout_width="301dp"
+                android:layout_height="21dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="13.51dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="12.51dp"
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:hint="example@example.ru"
+                android:inputType="text"
+                android:textColor="#846340"
+                android:textColorHint="#846340"
+                android:textSize="20sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="339dp"
+        android:layout_height="73dp"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_password2" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <TextView
+            android:id="@+id/tv_password"
+            android:layout_width="51dp"
+            android:layout_height="18dp"
+            android:letterSpacing="-0.02"
+            android:text="Пароль"
+            android:textColor="#846340"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_password_layout"
+            android:layout_width="339dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/text_background">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_password"
+                android:layout_width="301dp"
+                android:layout_height="21dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="13.51dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="12.51dp"
+                android:background="@android:color/transparent"
+                android:hint="password"
+                android:inputType="text|textPassword"
+                android:textColor="#846340"
+                android:textColorHint="#846340" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="339dp"
+        android:layout_height="73dp"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <TextView
+            android:id="@+id/tv_password2"
+            android:layout_width="125dp"
+            android:layout_height="18dp"
+            android:letterSpacing="-0.02"
+            android:text="Повторите пароль"
+            android:textColor="#846340"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_password_again_layout"
+            android:layout_width="339dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/text_background">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_password_again"
+                android:layout_width="match_parent"
+                android:layout_height="21dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="13.51dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="12.51dp"
+                android:background="@android:color/transparent"
+                android:hint="password"
+                android:inputType="text|textPassword"
+                android:textColor="#846340"
+                android:textColorHint="#846340" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
 
     <Button
         android:id="@+id/button_register"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="48dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="31dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/button_background"
         android:gravity="center"
@@ -126,18 +152,41 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_password_again" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="match_parent"
-        android:layout_height="23dp"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
         android:gravity="center"
         android:letterSpacing="-0.01"
         android:text="Регистрация"
+        android:textColor="#846340"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sign_in_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Уже зарегистрированы? Войти"
+        android:textColor="#2E0C0D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_register" />
+
+    <ImageView
+        android:id="@+id/iv_line_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

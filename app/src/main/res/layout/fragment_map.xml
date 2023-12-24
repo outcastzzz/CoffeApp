@@ -9,14 +9,14 @@
 
     <TextView
         android:id="@+id/tv_order"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="21dp"
         android:gravity="center"
+        android:letterSpacing="-0.01"
         android:text="Карта"
         android:textColor="#846340"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:letterSpacing="-0.01"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,6 +28,25 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_line_map" />
+
+    <ImageView
+        android:id="@+id/iv_line_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_order" />
+
+    <ImageView
+        android:id="@+id/iv_back_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

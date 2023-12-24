@@ -64,6 +64,10 @@ class MenuFragment : Fragment(), MenuAdapter.OnMenuItemCountChangedListener {
             launchOrderFragment()
         }
 
+        binding.ivBackMenu.setOnClickListener {
+            launchCafeListFragment()
+        }
+
     }
 
     override fun onCountChanged(orderItem: OrderItem) {
@@ -72,12 +76,15 @@ class MenuFragment : Fragment(), MenuAdapter.OnMenuItemCountChangedListener {
         } else {
             selectedItems.remove(orderItem.name)
         }
+        viewModel.addOrderItem(orderItem)
     }
 
     private fun launchOrderFragment() {
-        val orderArray = selectedItems.values.toTypedArray()
-        val action = MenuFragmentDirections.actionMenuFragmentToOrderFragment(orderArray)
-        findNavController().navigate(action)
+        findNavController().navigate(R.id.action_menuFragment_to_orderFragment)
+    }
+
+    private fun launchCafeListFragment() {
+        findNavController().navigate(R.id.action_menuFragment_to_coffeeListFragment)
     }
 
     override fun onDestroyView() {

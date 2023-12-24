@@ -2,6 +2,8 @@ package com.register.coffeapp.presentation.screen
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -54,7 +56,7 @@ class RegisterFragment: Fragment() {
 
         viewModel.error.observe(viewLifecycleOwner) {
             if (it) {
-                launchSignInFragment()
+                launchCafeListFragment()
             } else {
                 Toast.makeText(
                     requireActivity().applicationContext,
@@ -64,17 +66,17 @@ class RegisterFragment: Fragment() {
             }
         }
 
+        binding.signInButton.setOnClickListener {
+            launchSignInFragment()
+        }
+
         binding.buttonRegister.setOnClickListener {
-            Log.d("RegisterFragment", "Кнопка регистрации нажата.")
             if(checkInput() && checkPasswords()) {
-                Log.d("RegisterFragment", "Данные валидны, начинаем регистрацию.")
                 val user = User(
                     binding.etEmail.text.toString(),
                     binding.etPassword.text.toString()
                 )
                 viewModel.register(user)
-            } else {
-                Log.d("RegisterFragment", "Ошибка валидации данных.")
             }
         }
     }
@@ -82,9 +84,9 @@ class RegisterFragment: Fragment() {
     private fun checkInput(): Boolean {
         with(binding) {
             if(
-                etEmail.text.isBlank() ||
-                etPassword.text.isBlank() ||
-                etPasswordAgain.text.isBlank()
+                etEmail.text?.isBlank() == true ||
+                etPassword.text?.isBlank() == true ||
+                etPasswordAgain.text?.isBlank() == true
                 ) {
                 Toast.makeText(
                     requireActivity().applicationContext,
@@ -115,6 +117,10 @@ class RegisterFragment: Fragment() {
 
     private fun launchSignInFragment() {
         findNavController().navigate(R.id.action_registerFragment_to_signInFragment)
+    }
+
+    private fun launchCafeListFragment() {
+        findNavController().navigate(R.id.action_registerFragment_to_coffeeListFragment)
     }
 
     override fun onDestroyView() {

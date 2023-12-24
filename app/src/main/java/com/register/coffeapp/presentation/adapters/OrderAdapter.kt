@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.register.coffeapp.databinding.OrderItemBinding
 import com.register.coffeapp.domain.entities.OrderItem
+import com.register.coffeapp.presentation.MainViewModel
 
 class OrderAdapter: ListAdapter<OrderItem, OrderViewHolder>(OrderItemDiffCallback) {
 
@@ -25,6 +26,7 @@ class OrderAdapter: ListAdapter<OrderItem, OrderViewHolder>(OrderItemDiffCallbac
             tvName.text = order.name
             tvCount.text = order.count.toString()
             tvPrice.text = order.price
+
         }
     }
 

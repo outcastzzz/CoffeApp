@@ -8,8 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.register.coffeapp.R
 import com.register.coffeapp.databinding.FragmentOrderBinding
+import com.register.coffeapp.domain.entities.OrderItem
 import com.register.coffeapp.presentation.CoffeeApp
 import com.register.coffeapp.presentation.MainViewModel
 import com.register.coffeapp.presentation.ViewModelFactory
@@ -49,14 +52,22 @@ class OrderFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity(), viewModelFactory)[MainViewModel::class.java]
 
-        val args = OrderFragmentArgs.fromBundle(requireArguments())
-        val orderItems = args.selectedItems.toList()
-
         val adapter = OrderAdapter()
         binding.rvOrder.layoutManager = LinearLayoutManager(requireActivity().applicationContext)
         binding.rvOrder.adapter = adapter
-        adapter.submitList(orderItems)
+        var itemsCount = 0
+        viewModel.selectedItems.observe(viewLifecycleOwner) { orderItems ->
+            adapter.submitList(orderItems.values.toList())
+        }
 
+        binding.ivBackOrder.setOnClickListener {
+            launchMenuFragment()
+        }
+
+    }
+
+    private fun launchMenuFragment() {
+        findNavController().navigate(R.id.action_orderFragment_to_menuFragment)
     }
 
     override fun onDestroyView() {

@@ -70,10 +70,18 @@ class SignInFragment : Fragment() {
 
             viewModel.signIn(user)
         }
+
+        binding.registerButton.setOnClickListener {
+            launchRegisterFragment()
+        }
     }
 
     private fun launchCafeListFragment() {
         findNavController().navigate(R.id.action_signInFragment_to_coffeeListFragment)
+    }
+
+    private fun launchRegisterFragment() {
+        findNavController().navigate(R.id.action_signInFragment_to_registerFragment)
     }
 
     override fun onDestroyView() {

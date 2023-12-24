@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.register.coffeapp.domain.entities.User
 import com.register.coffeapp.domain.entities.Cafe
 import com.register.coffeapp.domain.entities.MenuItem
+import com.register.coffeapp.domain.entities.OrderItem
 import com.register.coffeapp.domain.useCase.GetCafeInfoUseCase
 import com.register.coffeapp.domain.useCase.GetMenuUseCase
 import com.register.coffeapp.domain.useCase.RegisterUseCase
@@ -34,9 +35,13 @@ class MainViewModel @Inject constructor(
     private val _menuList = MutableLiveData<List<MenuItem>>()
     val menuList: LiveData<List<MenuItem>> = _menuList
 
+    private val _selectedItems = MutableLiveData<MutableMap<String, OrderItem>>(mutableMapOf())
+    val selectedItems: LiveData<MutableMap<String, OrderItem>> = _selectedItems
+
     fun register(user: User) {
         viewModelScope.launch {
             val userData = registerUseCase.register(user)
+            _token.value = userData.token
             _error.value = userData.token != ""
         }
     }
@@ -44,6 +49,7 @@ class MainViewModel @Inject constructor(
     fun signIn(user: User) {
         viewModelScope.launch {
             val userData = signInUseCase.signIn(user)
+            _token.value = userData.token
             _error.value = userData.token != ""
         }
     }
@@ -62,6 +68,16 @@ class MainViewModel @Inject constructor(
             Log.d("MyTag", "$menu")
             _menuList.value = menu
         }
+    }
+
+    fun addOrderItem(orderItem: OrderItem) {
+        val update = _selectedItems.value ?: mutableMapOf()
+        if (orderItem.count > 0) {
+            update[orderItem.name] = orderItem
+        } else {
+            update.remove(orderItem.name)
+        }
+        _selectedItems.value = update
     }
 
 }

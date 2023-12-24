@@ -79,6 +79,10 @@ class CafeListFragment : Fragment() {
             launchMapFragment()
         }
 
+        binding.ivBackCafe.setOnClickListener {
+            launchSignInFragment()
+        }
+
     }
 
     private fun launchMenuFragment() {
@@ -89,6 +93,10 @@ class CafeListFragment : Fragment() {
         val listOfPoints = points.toTypedArray()
         val action = CafeListFragmentDirections.actionCoffeeListFragmentToMapFragment(listOfPoints)
         findNavController().navigate(action)
+    }
+
+    private fun launchSignInFragment() {
+        findNavController().navigate(R.id.action_coffeeListFragment_to_signInFragment)
     }
 
     override fun onDestroyView() {
